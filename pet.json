@@ -1,0 +1,11 @@
+{
+    "hunger": 50,
+    "happiness": 50,
+    "energy": 50,
+    "evilness": 50,
+
+    "lastHunger": 0,
+    "lastHappiness": 0,
+    "lastEnergy": 0,
+    "lastEvilness": 0
+}

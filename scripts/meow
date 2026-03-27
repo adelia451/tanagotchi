@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+. ./scripts/theme || exit
+# curl -X POS Thttps://tanagotchi.mimobox.sh
+
+messages=(
+  " ${PINK} you meowed at her and she called you a furry${RESET}"
+  " ${PINK} *pets you*${RESET}"
+)
+
+echo "${messages[$RANDOM % ${#messages[@]}]}"

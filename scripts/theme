@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+PINK=$'\e[38;5;212m'
+LPINK=$'\e[38;5;205m'
+GREEN=$'\e[38;5;49m'
+RED=$'\e[38;5;9m'
+RESET=$'\e[0m'
+LINE=$'\e[4m'
+BOLD=$'\e[1m'

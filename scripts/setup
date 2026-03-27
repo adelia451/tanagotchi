@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+. ./scripts/theme || exit
+
+echo ""
+echo -e "${PINK} hi owen~ ${RESET}"
+
+echo ""
+sleep 1
+echo -e "${RED} ↜₍^  > w <^₎ Ψ   i'm installing malware onto your computer... ${RESET}"
+
+echo ""
+for i in {1..10}; do
+    sleep 1
+    echo -ne "${RED} .${RESET}"
+done
+
+sleep 1
+echo ""
+echo ""
+echo -e "${PINK} jk <3 ${RESET}"
+
+echo ""
+sleep 1
+echo -e "${PINK} i want to automatically pull updates from my github every 30 mins ${RESET}${GREEN}(cron)${RESET}"
+read -p "$(echo -e "${PINK} is that oki? ${RESET}${LPINK} (y/n) ${RESET}")" answer
+echo ""
+    if [[ $answer == "y" ]]; then
+        echo "(this would be the cron thing that commented out)"
+        # (crontab -l; echo "*/30 * * * * cd ~/tanagotchi && git pull") | crontab -
+    else
+        echo -e "${PINK} oh.. oh.. you don't want updates? ${RESET}"
+    fi
+
+echo ""
+sleep 1
+echo -e "${PINK} i want to add aliases to your terminal to make shorter commands ${RESET}${GREEN}(bashrc)${RESET}"
+read -p "$(echo -e "${PINK} is that oki? ${RESET}${LPINK} (y/n) ${RESET}")" answer
+echo ""
+    if [[ $answer == "y" ]]; then
+        echo 'alias tanagotchi="~/tanagotchi/scripts/tanagotchi"' # >> ~/.bashrc
+        echo 'alias burp="~/tanagotchi/scripts/burp"' # >> ~/.bashrc
+        echo 'alias compliment="~/tanagotchi/scripts/compliment"' # >> ~/.bashrc
+        echo 'alias feed="~/tanagotchi/scripts/feed"' # >> ~/.bashrc
+        echo 'alias hug="~/tanagotchi/scripts/hug"' # >> ~/.bashrc
+        echo 'alias kiss="~/tanagotchi/scripts/kiss"' # >> ~/.bashrc
+        echo 'alias nap="~/tanagotchi/scripts/nap"' # >> ~/.bashrc
+        echo 'alias play="~/tanagotchi/scripts/play"' # >> ~/.bashrc
+        echo 'alias raspberry="~/tanagotchi/scripts/raspberry"' # >> ~/.bashrc
+
+        if ! grep -q 'alias meow' ~/.bashrc; 
+        then
+            echo 'alias meow="~/tanagotchi/scripts/meow"' # >> ~/.bashrc
+        else
+            echo ""
+            echo -e "${PINK} you already have a meow alias ?! ${RESET}"
+        fi
+
+        echo ""
+        sleep 1
+        echo -e "${PINK} all done! type${RESET}${BOLD}${GREEN} tanagotchi${RESET}${PINK} to get started ${RESET}"
+
+
+    else
+    echo -e "${PINK} oh.. oh.. give me second to pull out the longer commands ${RESET}"
+    fi
+
+# source ~/.bashrc
+
+
+
+
+
