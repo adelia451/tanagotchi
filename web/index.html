@@ -1,16 +1,69 @@
 <!-- Fetches state from server
 Updates UI (happy/sad/etc.) -->
-
-
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tanagotchi</title>
+    <link rel="icon" href="EDIT">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+</head>
+
 <body>
+    <div id="wrapper"> 
+    <!-- TITLE -->
+        <div id="title">tanagotchi</div>
 
-<div class="bar">
-    <span>love</span>
-    <div class="fill" style="width: 100%"></div>
-</div>
+    <div id="main">  
+    <!-- TANAGOTCHI -->
+        <div id="tanagotchi">
+             <img id="device-image" src="device.jpg">
+            <!-- <img id="tanagotchi-image" src="placeholder.png"> -->
+        </div>
+    
+    <!-- BARS -->
+    <div id="bar-container">
+        <div id="stats-title"># stats</div>
+        <div class="bar">
+            <!-- hardcoded love bar -->
+            <span>love</span>
+            <div class="bar-outer">
+                <div class="bar-fill" style="width: 100%"></div>
+            </div>
+        </div>
 
+        <div class="bar">
+            <span>happiness</span>
+            <div class="bar-outer">
+                <div class="bar-fill" id="happiness-fill"></div>
+            </div>
+        </div>
+
+        <div class="bar">
+            <span>hunger</span>
+            <div class="bar-outer">
+                <div class="bar-fill" id="hunger-fill"></div>
+            </div>
+        </div>
+
+        <div class="bar">
+            <span>energy</span>
+            <div class="bar-outer">
+                <div class="bar-fill" id="energy-fill"></div>
+            </div>
+        </div>
+
+        <div class="bar">
+            <span>evilness</span>
+            <div class="bar-outer">
+                <div class="bar-fill" id="evilness-fill"></div>
+            </div>
+        </div>
+    </div>
+    </div>          
+    </div>
 </body>
 </html>
