@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-. ./scripts/theme || exit
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$SCRIPT_DIR/theme" || exit
 
 readarray -t COMMANDS << "MEOW"
 hunger|feed
@@ -9,7 +10,7 @@ evilness|meow  burp   raspberry
 MEOW
 
 echo ""
-echo -e "${LPINK}────────────────────────────────────────────────────────${RESET}"
+echo -e "${BROWN}────────────────────────────────────────────────────────${RESET}"
 
 echo ""
 echo -e "${PINK}    ⣰⡀ ⢀⣀ ⣀⡀ ⢀⣀ ⢀⡀ ⢀⡀ ⣰⡀ ⢀⣀ ⣇⡀ ⠄          ${RESET}${GREEN}╱|、${RESET}"
@@ -18,16 +19,15 @@ echo "                                          ${RESET}${GREEN}|、˜〵 "
 echo -e "       ${GREEN}\e]8;;https://tanagotchi.mimobox.sh\e\\${LINE}tanagotchi.mimobox.sh\e]8;;\e\\${RESET}${GREEN}              じしˍ,)ノ${RESET}"
 
 echo ""
-echo -e "${LPINK}────────────────────────────────────────────────────────${RESET}"
+echo -e "${BROWN}────────────────────────────────────────────────────────${RESET}"
 
 echo ""
-echo -e "${GREEN} hi owen~ ฅ₍^•⩊ •マⳊ  ❤︎  ❤︎  ❤︎  ${RESET}"
+echo -e "${PINK} hi owen~ ฅ₍^•⩊ •マⳊ  ❤︎  ❤︎  ❤︎  ${RESET}"
 echo "" 
-echo -e "${GREEN} here are the commands: ${RESET}"
-echo ""
+echo -e "${PINK} here are the commands: ${RESET}"
 
-# 12 | 40
-echo -e "${LPINK}┌────────────┬─────────────────────────────────────────┐${RESET}"
+echo ""
+echo -e "${TAN}┌────────────┬─────────────────────────────────────────┐${RESET}"
 
 total=${#COMMANDS[@]}
 count=0
@@ -40,13 +40,13 @@ for line in "${COMMANDS[@]}"; do
         vSpace=$((40 - ${#value}))
         pSpace=$(printf '%*s' "$nSpace" '')
         lSpace=$(printf '%*s' "$vSpace" '')
-        printf "${LPINK}|${RESET}${BOLD}%s${RESET}${pSpace}${LPINK}|${RESET} %s${lSpace}${LPINK}|${RESET}\n" "$name" "$value"
+        printf "${TAN}|${RESET}${BOLD}%s${RESET}${pSpace}${LPINK}|${RESET} %s${lSpace}${LPINK}|${RESET}\n" "$name" "$value"
   
     if [[ $count -lt $total ]]; then
-    echo -e "${LPINK}├────────────┼─────────────────────────────────────────┤${RESET}"
+    echo -e "${TAN}├────────────┼─────────────────────────────────────────┤${RESET}"
     fi
 done
-echo -e "${LPINK}└────────────┴─────────────────────────────────────────┘${RESET}"
+echo -e "${TAN}└────────────┴─────────────────────────────────────────┘${RESET}"
 
 echo ""
-echo -e "${LPINK}────────────────────────────────────────────────────────${RESET}"
+echo -e "${BROWN}────────────────────────────────────────────────────────${RESET}"

@@ -4,8 +4,8 @@
     "energy": 50,
     "evilness": 50,
 
-    "lastHunger": 0,
-    "lastHappiness": 0,
-    "lastEnergy": 0,
-    "lastEvilness": 0
+    "lastHunger": 1712600000000,
+    "lastHappiness": 1712600000000,
+    "lastEnergy": 1712600000000,
+    "lastEvilness": 1712600000000
 }

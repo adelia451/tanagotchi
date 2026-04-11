@@ -1,0 +1,178 @@
+#!/usr/bin/env bash
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$SCRIPT_DIR/scripts/theme" || exit
+
+echo ""
+sleep 1
+echo -e "${PINK} Hi Owen~ ${RESET}"
+
+echo ""
+sleep 1
+echo -e "${RED} ↜₍^  > w <^₎ Ψ   I'm installing malware onto your computer... ${RESET}"
+
+echo ""
+for i in {1..10}; do
+    sleep 1
+    echo -ne "${RED} .${RESET}"
+done
+
+echo ""
+sleep 1
+echo -e "${PINK} JK ...${RESET}"
+
+echo ""
+sleep 1
+echo -e "${PINK} Happy birthday and 6 month anniversary${RESET}${RED}<3${RESET}"
+
+echo ""
+sleep 1
+echo -e "${PINK} I love you so much${RESET}"
+
+# -------------------- UPDATES --------------------
+echo ""
+sleep 1
+echo -e "${GREEN} I want to add auto-updates from GitHub every 30 mins?${RESET}"
+echo ""
+echo -e "${BLUE} Options:${RESET}"
+echo -e "${BLUE} - crontab ${RESET}"
+echo -e "${BLUE} - systemd ${RESET}"
+echo -e "${BLUE} - none${RESET}"
+
+echo ""
+read -p "$(echo -e "${GREEN} Which do you prefer? ${RESET}${BROWN} (crontab/systemd/no) ${RESET}")" option
+echo ""
+
+# CRONTAB
+if [[ $option == "crontab" ]]; then
+    if command -v crontab &>/dev/null; then
+        (crontab -l 2>/dev/null; echo "*/30 * * * * cd $SCRIPT_DIR && git pull") | crontab -
+        echo -e "${PINK} > Yay! I'll stay up to date ᓚ₍ ^. .^₎${RESET}"
+    else
+        echo -e "${PINK} > Crontab is not available${RESET}"
+    fi
+
+# SYSTEMD
+elif [[ $option == "systemd" ]]; then
+    echo ""
+    echo -e "${PINK} > I'll create these two files for you: ${RESET}"
+
+    echo ""
+    echo -e "${BROWN} ~/.config/systemd/user/tanagotchi-update.service${RESET}"
+    echo -e "${BLUE} [Unit]${RESET}"
+    echo -e "${BLUE} Description=pull tanagotchi updates${RESET}"
+    echo -e "${BLUE} [Service]${RESET}"
+    echo -e "${BLUE} Type=oneshot${RESET}"
+    echo -e "${BLUE} WorkingDirectory=$SCRIPT_DIR${RESET}"
+    echo -e "${BLUE} ExecStart=/usr/bin/env git pull${RESET}"
+
+    echo ""
+    echo -e "${BROWN} ~/.config/systemd/user/tanagotchi-update.timer${RESET}"
+    echo -e "${BLUE} [Unit]${RESET}"
+    echo -e "${BLUE} Description=tanagotchi update timer${RESET}"
+    echo -e "${BLUE} [Timer]${RESET}"
+    echo -e "${BLUE} OnBootSec=5min${RESET}"
+    echo -e "${BLUE} OnUnitActiveSec=30min${RESET}"
+    echo -e "${BLUE} [Install]${RESET}"
+    echo -e "${BLUE} WantedBy=timers.target${RESET}"
+
+    echo ""
+    read -p "$(echo -e "${GREEN} Does that look right? ${RESET}${BROWN} (y/n) ${RESET}")" confirm
+
+    echo ""
+    if [[ $confirm == "y" ]]; then
+        mkdir -p ~/.config/systemd/user
+        cat > ~/.config/systemd/user/tanagotchi-update.service << EOF
+[Unit]
+Description=pull tanagotchi updates
+
+[Service]
+Type=oneshot
+WorkingDirectory=$SCRIPT_DIR
+ExecStart=/usr/bin/env git pull
+EOF
+        cat > ~/.config/systemd/user/tanagotchi-update.timer << EOF
+[Unit]
+Description=tanagotchi update timer
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=30min
+
+[Install]
+WantedBy=timers.target
+EOF
+        systemctl --user enable --now tanagotchi-update.timer
+        echo -e "${PINK} > Yay! I'll stay up to date ᓚ₍ ^. .^₎${RESET}"
+    else
+        echo -e "${PINK} > Ok! You can set it up manually later${RESET}"
+    fi
+
+# NONE / ANYTHING ELSE
+else
+    echo -e "${PINK} > Ok! Skipping updates${RESET}"
+fi
+
+# -------------------- PATHS --------------------
+SHELL_NAME=$(basename "$SHELL")
+
+if [[ "$SHELL_NAME" == "bash" ]]; then
+    RC_FILE="$HOME/.bashrc"
+    PATH_LINE="export PATH=\"$SCRIPT_DIR/scripts:\$PATH\""
+elif [[ "$SHELL_NAME" == "zsh" ]]; then
+    RC_FILE="$HOME/.zshrc"
+    PATH_LINE="export PATH=\"$SCRIPT_DIR/scripts:\$PATH\""
+elif [[ "$SHELL_NAME" == "fish" ]]; then
+    RC_FILE="$HOME/.config/fish/config.fish"
+    PATH_LINE="set -gx PATH \"$SCRIPT_DIR/scripts\" \$PATH"
+else
+    echo ""
+    echo -e "${PINK} > Hmm your shell is fancy (${SHELL_NAME})...${RESET}"
+    echo -e "${PINK} > To make commands to play my game add this line manually:${RESET}"
+    echo ""
+    echo -e "${BROWN}export PATH=\"$SCRIPT_DIR/scripts:\$PATH\"${RESET}"
+    echo ""
+    exit 0
+fi
+
+echo ""
+sleep 1
+echo -e "${GREEN} I want to make commands like 'feed', 'play', etc. work in your terminal by setting up paths${RESET}"
+
+echo ""
+echo -e "${GREEN} I would add one line to your shell config: ${RESET}${BROWN}$PATH_LINE${RESET}"
+echo -e "${GREEN} That you can remove from: ${RESET}${BROWN}$RC_FILE${RESET}"
+
+echo ""
+read -p "$(echo -e "${GREEN} Is that oki? ${RESET}${BROWN} (y/n) ${RESET}")" answer
+
+echo ""
+if [[ $answer == "y" ]]; then
+
+    # make scripts executable
+    chmod +x "$SCRIPT_DIR"/scripts/*
+
+    # avoid duplicate PATH entries
+    if ! grep -q "$SCRIPT_DIR/scripts" "$RC_FILE"; then
+        echo "" >> "$RC_FILE"
+        echo "$PATH_LINE" >> "$RC_FILE"
+        echo ""
+        echo -e "${PINK} > Commands are ready!${RESET}"
+    else
+        echo ""
+        echo -e "${PINK} > Commands were already set up hehe${RESET}"
+    fi
+
+else
+    echo ""
+    echo -e "${PINK} > Ok! Nothing changed${RESET}"
+fi
+
+# DONE
+echo ""
+sleep 1
+
+if [[ -n "$RC_FILE" ]]; then
+    echo -e "${GREEN} All done!${RESET}"
+    echo -e "${GREEN} Run ${RESET}${BOLD}${BROWN}source $RC_FILE${RESET}${GREEN} or open a new terminal${RESET}"
+    echo -e "${GREEN} Then type${RESET}${BOLD}${PINK} tanagotchi${RESET}${GREEN} to get started ${RESET}"
+fi
