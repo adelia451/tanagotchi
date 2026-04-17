@@ -19,17 +19,17 @@ function updateStatus(){
     
             const isHappy = ana.hunger >= 75 && ana.happiness >= 75 && ana.energy >= 75 && ana.evilness >=75
             if (ana.hunger <=45 || ana.happiness <= 45 || ana.energy <= 45 || ana.evilness <= 45 ){
-                img.src = 'sad.png'
+                img.src = 'ana_sad.png'
             } else if (isHappy && ana.evilness >= 90) {
-                img.src = 'evil.png'
+                img.src = 'ana_evil.png'
             } else if (isHappy) {
-                img.src = 'happy.png'
+                img.src = 'ana_happy.png'
             } else {
-                img.src = 'neutral.png'
+                img.src = 'ana_neutral.png'
             }
         })
         .catch(() => {
-            console.long("server unreachable");
+            console.log("server unreachable");
         });
 }
 

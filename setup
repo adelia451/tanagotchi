@@ -17,12 +17,13 @@ for i in {1..10}; do
 done
 
 echo ""
+echo ""
 sleep 1
 echo -e "${PINK} JK ...${RESET}"
 
 echo ""
 sleep 1
-echo -e "${PINK} Happy birthday and 6 month anniversary${RESET}${RED}<3${RESET}"
+echo -e "${PINK} Happy birthday and 6 month anniversary${RESET}${RED} <3${RESET}"
 
 echo ""
 sleep 1
@@ -30,7 +31,7 @@ echo -e "${PINK} I love you so much${RESET}"
 
 # -------------------- UPDATES --------------------
 echo ""
-sleep 1
+sleep 2
 echo -e "${GREEN} I want to add auto-updates from GitHub every 30 mins?${RESET}"
 echo ""
 echo -e "${BLUE} Options:${RESET}"
@@ -39,7 +40,7 @@ echo -e "${BLUE} - systemd ${RESET}"
 echo -e "${BLUE} - none${RESET}"
 
 echo ""
-read -p "$(echo -e "${GREEN} Which do you prefer? ${RESET}${BROWN} (crontab/systemd/no) ${RESET}")" option
+read -p "$(echo -e "${GREEN} Which do you prefer? ${RESET}${BROWN} (crontab/systemd/none) ${RESET}")" option
 echo ""
 
 # CRONTAB
@@ -136,16 +137,18 @@ fi
 
 echo ""
 sleep 1
-echo -e "${GREEN} I want to make commands like 'feed', 'play', etc. work in your terminal by setting up paths${RESET}"
+echo -e "${GREEN} I want to make commands like 'feed', 'play', etc.${RESET}"
+echo -e "${GREEN} work in your terminal by adding paths${RESET}"
 
 echo ""
-echo -e "${GREEN} I would add one line to your shell config: ${RESET}${BROWN}$PATH_LINE${RESET}"
+echo -e "${GREEN} I would add one line to your shell config: ${RESET}"
+echo -e "${BROWN} $PATH_LINE${RESET}"
+echo ""
 echo -e "${GREEN} That you can remove from: ${RESET}${BROWN}$RC_FILE${RESET}"
 
 echo ""
 read -p "$(echo -e "${GREEN} Is that oki? ${RESET}${BROWN} (y/n) ${RESET}")" answer
 
-echo ""
 if [[ $answer == "y" ]]; then
 
     # make scripts executable

@@ -42,10 +42,6 @@ function applyDecay(ana){
     ana.lastEvilness = now
     return ana
 }
-// save ana.json back
-function saveAna(ana) {
-    fs.writeFileSync('ana.json', JSON.stringify(ana, null, 2))
-}
 
 // status for webpage
 app.get('/status', (req, res) => {
@@ -73,7 +69,7 @@ app.post('/feed', (req, res) => {
 })
 
 // HAPPINESS ----------
-app.post('/compliment', '/hug', '/play', (req, res) => {
+app.post(['/compliment', '/hug', '/play'], (req, res) => {
     const ana = loadAna()
     applyDecay(ana)
 
@@ -85,7 +81,7 @@ app.post('/compliment', '/hug', '/play', (req, res) => {
 })
 
 //ENERGY ----------
-app.post('/nap', '/kiss', (req, res) => {
+app.post(['/nap', '/kiss'], (req, res) => {
     const ana = loadAna()
     applyDecay(ana)
 
@@ -97,7 +93,7 @@ app.post('/nap', '/kiss', (req, res) => {
 })
 
 // EVILNESS ----------
-app.post('/burp', '/meow', '/raspberry', (req, res) => {
+app.post(['/burp', '/meow', '/raspberry'], (req, res) => {
     const ana = loadAna()
     applyDecay(ana)
 

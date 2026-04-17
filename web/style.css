@@ -1,114 +1,174 @@
 :root {
-    --pink: #FF87D7;
-    --lpink: #FF5FAF;
-    --green: #00FF87;
-    --blue: #D9FFF8;
-    --grey: #353635;
+    --pink: #ff5faf;
+    --lpink: rgb(255, 224, 237);
+    --green: #bfffd5;
+    --lgreen: #e0ffeb;
+    --blue: rgb(95, 215, 255);
+    --lblue: #cbeffa;
+    --yellow: rgb(247, 255, 158);
+    --purple: rgb(206, 181, 255);
+    --lpurple: #e4dafd;
+ 
+
     --font-heading: "Doto", sans-serif;
-    --font-body: "JetBrains Mono", monospace;
+    --font-body: "Noto Sans Mono", monospace;
 }
 
 /* RESET */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    background-color: var(--blue); 
-    
+    background-color: var(--lpink);
+    background-image: radial-gradient(var(--blue) 1px, transparent 1px);
+    background-size: 30px 30px;
+    position: relative;
+
     font-family: var(--font-body);
-    font-size: 17px;
-    color: var(--grey);
+    font-size: 14px;
+    color: var(--pink);
     line-height: 1.5;
 
+    margin: 0;
     min-height: 100vh;
+    display: flex;
+    justify-content: center;
+
+    align-items: center; 
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, 
+        rgba(247, 255, 158, 0.1) 33%,
+        rgba(95, 215, 255, 0.1) 66%,
+        rgba(206, 181, 255, 0.1) 99%);
+    pointer-events: none;
+    z-index: 0;
 }
 
 #wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
-    justify-content: center;
+    width: 100%;
+    padding: 4rem 0;
+
+    position: relative;
+    z-index: 1;
 }
 
 #title {
     font-family: var(--font-heading);
     font-size: 60px;
-    color: var(--lpink);
-    margin-bottom: 2rem;
+    color: var(--pink);
+    text-align: center;
+    width: 100%;
+    margin-bottom: 3rem;
 }
 
 #main {
     display: flex;
     align-items: center;
-    gap: 3rem;
+    gap: 4rem;
+    justify-content: center;
+    width: 100%;
 }
 
 /* TANAGOTCHI */
-#tanagotchi {
-    position: relative;
-    width: 300px;
-    height: auto;
-}
-
-#device-image {
-    width: 100%;
-    height: auto;
-}
-
 #tanagotchi-image {
-    position: absolute;
-    top: 20%;
-    left: 20%;
-    width: 60%;
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    display: block;
+}
+
+#tanagotchi {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* BARS */
-#stats-title {
-    font-family: var(--font-body);
-    color: var(--green);
-    font-size: 16px;
-    font-style: italic;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.2rem;
-}
-
 #bar-container {
-    width: 350px;
-    background:var(--grey);
-    border-radius: 12px;
+    width: 100%;
+    max-width: 350px;
+    border-radius: 20px;
     padding: 1.5rem;
-    border: 1px solid var(--green);
+    border: 3px solid var(--pink);
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.4rem;
+}
+
+#bar-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-conic-gradient(var(--green) 0% 25%, var(--lgreen) 0% 50%);
+    background-size: 16px 16px;
+}
+
+#stats-title {
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+    font-size: 16px;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
 }
 
 .bar {
     display: flex;
     align-items: center;
-    gap: 30px;
+    position: relative;
+    z-index: 1;
+    gap: 7px;
 }
 
-.bar span {
-    color: var(--green);
+.bar span:first-child {
+    font-size: 14px; 
+    width: 90px;
+    flex-shrink: 0;
+}
+
+.bar-val {
     font-size: 12px;
-    min-width: 80px;
+    width: 40px;
+    text-align: right;
+    flex-shrink: 0;
+    
 }
 
 .bar-outer {
-    /* flex: 1; */
-    width:200px;
-    border: 1.8px solid var(--lpink);
+    flex: 1;
+    height: 14px;
     border-radius: 999px;
-    height: 16px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1.8px solid var(--pink);
     padding: 2px;
+    min-width: 0;
 }
 
 .bar-fill {
     width: 0%;
     height: 100%;
     border-radius: 999px;
-    background: var(--pink);
     transition: width 0.5s ease;
 
 }
+
+.bar-fill.love {
+    background: linear-gradient(90deg, var(--lpink), var(--yellow), var(--lblue), var(--lpurple));
+}
+
+#happiness-fill { background: var(--lpink) }
+#hunger-fill { background: var(--yellow); }
+#energy-fill { background: var(--lblue); }
+#evilness-fill { background: var(--lpurple); }
+
+
