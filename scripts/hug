@@ -15,7 +15,7 @@ fi
 
 messages=(
   " ${PINK}*hugs*${RESET}"
-  " ${PINK}*sniff you* i'm just breathing...${RESET}"
+  " ${PINK}*sniffs you* i'm just breathing...${RESET}"
 )
 
 echo "${messages[$RANDOM % ${#messages[@]}]}"

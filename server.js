@@ -31,10 +31,10 @@ function applyDecay(ana){
     const energyHours = (now - ana.lastEnergy) / 3600000
     const evilnessHours = (now - ana.lastEvilness) / 3600000
 
-    ana.hunger = Math.max(0, Math.min(100, ana.hunger - (hungerHours * 2 )))
-    ana.happiness = Math.max(0, Math.min(100, ana.happiness - (happinessHours * 2 )))
-    ana.energy = Math.max(0, Math.min(100, ana.energy - (energyHours * 2 )))
-    ana.evilness = Math.max(0, Math.min(100, ana.evilness - (evilnessHours * 2 )))
+    ana.hunger = Math.max(0, Math.min(100, Math.floor(ana.hunger - (hungerHours * 2))))
+    ana.happiness = Math.max(0, Math.min(100, Math.floor(ana.happiness - (happinessHours * 2))))
+    ana.energy = Math.max(0, Math.min(100, Math.floor(ana.energy - (energyHours * 2))))
+    ana.evilness = Math.max(0, Math.min(100, Math.floor(ana.evilness - (evilnessHours * 2))))
 
     ana.lastHunger = now
     ana.lastHappiness = now
